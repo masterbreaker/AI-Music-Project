@@ -6,6 +6,7 @@ leftWristY=0
 rightWristX=0
 rightWristY=0
 scoreleftwrist=0
+scoreRightwrist=0
 song1_status=""
 song2_status=""
 
@@ -42,6 +43,16 @@ function draw(){
 
     }
 
+    if(scoreRightwrist>0.2){
+        circle(rightWristX,rightWristY,20)
+        song1.stop();
+        if(song2_status==false){
+            song2.play();
+            document.getElementById("song_name").innerHTML="playing-peterpan song"
+        }
+
+    }
+
 }
 
 function modelLoaded(){
@@ -53,6 +64,7 @@ if(results.length>0)
 {
     console.log(results);
     scoreleftwrist=results[0].pose.keypoints[9].score;
+    scoreRightwrist=results[0].pose.keypoints[10].score;
     leftWristX= results[0].pose.leftWrist.x;
     leftWristY = results[0].pose.leftWrist.y;
     console.log("lefwristX = " + leftWristX + "leftWristY = " + leftWristY );
